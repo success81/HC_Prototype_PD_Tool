@@ -1,0 +1,5 @@
+Flask==3.0.3
+markdown2==2.5.0
+google-cloud-aiplatform==1.68.0
+gunicorn==22.0.0
+Werkzeug==3.0.3

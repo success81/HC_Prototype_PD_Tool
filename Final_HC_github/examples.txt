@@ -1,0 +1,79 @@
+{
+    "duty_statements": [
+        "Independently classifies, reviews, and implements position descriptions in a variety of occupational series and grades (GS-1 through GS-15), and in consideration of the diverse organizational issues associated with each individual assignment. Makes final position classification decisions on controversial situations, and works closely with appropriate program officials to determine the impact of those decisions.",
+        "Monitors accounting systems elements and internal controls, identifying problem areas in accounting and financial management effectiveness. Analyzes and reconciles a variety of accounts. Performs automated accounting and financial systems assignments that require the solution of accounting problems to support the production of consistent, quality financial information and reports.",
+        "Plans and prioritizes the sequence, direction and progress of the assignment. Analyzes data from various sources that includes incomplete and often conflicting information and alternatives; and identifies practical and economical solutions to meet project or situation requirements and constraints.",
+        "As a technical specialist in a combination of physical science fields, plans and carries out DOE scientific projects or initiatives that are broad in scope. Serves as a contact point with outside individuals and organizations for matters pertaining to the assigned programs/project.",
+        "Provides executive protection services for the Secretary of Energy, or others designated by the Secretary, often on short notice, that involves liaison with law enforcement officials and coordination with the FBI, U.S. Secret Service, and U.S. State Department."
+    ],
+    "combined_duties": [
+        "Independently classifies, reviews, and implements position descriptions while monitoring accounting systems elements and internal controls. Plans and prioritizes assignments while analyzing data from various sources, exercising considerable originality in overcoming complexities while providing authoritative policy interpretations.",
+        "As a technical specialist, plans and executes DOE projects while serving as a primary contact for external stakeholders. Analyzes complex data sets and prepares comprehensive documentation while maintaining collaborative relationships with scientific partners.",
+        "Oversees budget execution and program implementation while ensuring compliance with federal regulations. Reviews and approves corrective actions while maintaining communication with senior leadership on operational status and funding levels.",
+        "Provides technical oversight of contractor operations while developing and implementing quality assurance programs. Conducts assessments and audits while coordinating with multiple stakeholders to ensure program effectiveness.",
+        "Manages environmental compliance programs while serving as a subject matter expert for regulatory requirements. Develops and implements policies while coordinating with state and federal agencies on enforcement actions."
+    ],
+    "factor1": [
+        "Expert knowledge of analytical and evaluative methods plus thorough understanding of regulatory programs to select and apply appropriate program evaluation techniques in determining compliance with rules and regulations issued by the agency.",
+        "Knowledge of, and skill in applying, professional operations research principles, theories, concepts, methods, and collection techniques, including complex analytical, mathematical, statistical, and economic theories.",
+        "Expert knowledge of DOE, OSHA, EPA, NRC, and other agency worker safety regulations, policies, and procedures to determine conformance with required practices applicable to DOE facilities.",
+        "Professional knowledge of architecture theories, principles, concepts, and fundamentals plus computer technology relevant to architecture and construction sufficient to produce architectural design studies.",
+        "Technical knowledge of complex products and analytical ability to analyze alternatives, recommend solutions, and apply new developments and methodologies to assigned program areas."
+    ],
+    "factor2": [
+        "The supervisor provides administrative and policy direction in terms of broadly defined missions. Employee has highest degree of independence in seeking solutions and work products are considered technically authoritative.",
+        "The supervisor sets overall objectives and resources available. Employee consults to determine projects, develops deadlines, and identifies resources. Employee plans and carries out work independently.",
+        "The supervisor makes assignments by indicating generally what is to be done, limitations, quality expectations, deadlines, and priorities. Employee receives specific instructions for new assignments.",
+        "The supervisor defines scope of responsibility and objectives. Employee is provided detailed assistance only in unusual situations without clear precedents. Work is evaluated for technical soundness.",
+        "The supervisor outlines broadly defined missions. Employee independently plans and carries out programs, resolves most conflicts, coordinates work with others as necessary."
+    ],
+    "factor3": [
+        "Guidelines consist of general administrative policies requiring considerable adaptation. Administrative policies provide basic outline of results but don't detail methods.",
+        "Guidelines include procurement regulations and precedents. Employee uses judgment in interpreting guidelines and adapting procedures for specific problems.",
+        "Guidelines consist of broad DOE policy statements, basic legislation, and agency goals. Guidelines require extensive interpretation to effect specific policy statements.",
+        "Numerous guidelines including agency policies, practices, precedents and regulations are available but may not be completely applicable to all situations.",
+        "The employee uses generalized operating policies. Precedents are often scarce or limited use. Employee uses initiative and judgment to deviate from traditional methods."
+    ],
+    "factor4": [
+        "Work involves major initiatives requiring intensity of effort across multiple phases and sites. Each site has unique technical, political, regulatory and institutional constraints.",
+        "Assignments require analysis of interrelated issues affecting administrative programs. Studies are complicated by legislative requirements and program goals.",
+        "Analytical assignments involve developing and implementing broad programs based on new legislation. Work requires consideration of immediate and long-range effects.",
+        "Work involves different and unrelated problems affecting long-range implementation of mission-oriented programs. Employee conducts studies to develop responses to new requirements.",
+        "Assignments involve efforts to develop new program objectives or legislative initiatives. Projects are usually without precedent and of such scope they require directing team efforts."
+    ],
+    "factor5": [
+        "The purpose is to plan and carry out important program activities. Work affects effectiveness of environmental protection systems and programs impacting agency activities.",
+        "Work involves developing financial management policies with Department-wide implications. Affects design and operation of core financial systems.",
+        "Purpose is to serve as authoritative technical expert on policies affecting major DOE activities. Work impacts achievement of critical agency missions.",
+        "Work involves planning and implementing crucial projects affecting multiple facilities. Results impact long-term operational effectiveness and safety.",
+        "The purpose is to conduct studies of significant interest to the public and Government. Findings lead to major program or policy changes."
+    ],
+    "factor6": [
+        "Contacts include executive officials, Congressional staff, and officials of other Federal agencies. Participates in high-level departmental meetings.",
+        "Contacts are with individuals from outside DOE in unstructured settings. Includes contractors, attorneys, executives, and regulatory agencies.",
+        "Personal contacts include DOE officials, contractors, oversight agencies, and technical experts. Purpose and extent of contacts varies considerably.",
+        "Contacts include high-level officials from multiple agencies, Congressional staff, and industry representatives requiring extensive coordination.",
+        "Regular contacts with program managers, contractors, regulatory authorities, and stakeholders from various organizations and levels of government."
+    ],
+    "factor7": [
+        "Contacts are to influence, motivate and obtain action. Incumbent resolves issues between offices and provides authoritative advice.",
+        "Purpose is to plan, coordinate and advise on work efforts. Requires influencing individuals working toward mutual goals.",
+        "Contacts are to persuade officials to accept findings and recommendations. May encounter resistance due to organizational conflicts.",
+        "Purpose is to justify, defend and negotiate matters involving significant issues. Requires achieving consensus among parties with diverse viewpoints.",
+        "Contacts involve obtaining cooperation for controversial changes, resolving significant problems, and providing authoritative guidance."
+    ],
+    "factor8": [
+        "Work requires regular physical exertion including standing, walking, climbing and lifting up to 50 pounds. May require agility for inspections.",
+        "The work is primarily sedentary but may require some walking, standing, carrying light items during facility inspections.",
+        "The work is sedentary with some walking, standing, and carrying of light items such as papers or small equipment.",
+        "Position requires occasional physical activity including bending, climbing stairs, and lifting moderate weights during site visits.",
+        "Work involves periods of physical exertion during field activities, requiring use of safety equipment and protective gear."
+    ],
+    "factor9": [
+        "Work involves exposure to hazards requiring protective equipment. Includes radiation sources, chemicals, high temperatures.",
+        "Work is primarily office-based with periodic facility visits requiring safety precautions. May involve moderate risks at sites.",
+        "The work environment involves everyday risks requiring normal safety precautions typical of offices and meeting rooms.",
+        "Work involves regular exposure to potentially hazardous environments requiring strict adherence to safety protocols.",
+        "Environment includes both office and industrial settings with varying levels of exposure to environmental conditions."
+    ]
+}

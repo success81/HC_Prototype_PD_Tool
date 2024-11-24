@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags and title -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOE PD Builder</title>
+    <style>
+        /* Your existing CSS styles */
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            margin: 20px auto;
+            max-width: 800px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .instructions {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        textarea {
+            min-height: 100px;
+        }
+
+        .duties-container {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+
+        .duty-group {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .delete-duty {
+            color: red;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+        }
+
+        .warning {
+            color: red;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .confirmation {
+            color: green;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .button {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .button:hover {
+            background: #1557b0;
+        }
+
+        .loading {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .loading-message {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .quote-container {
+            margin-top: 20px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        ol {
+            margin-top: 0;
+            padding-left: 20px;
+        }
+
+        ul {
+            margin-top: 0;
+            padding-left: 20px;
+        }
+
+        .factor-title {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .button-group {
+            margin-top: 20px;
+        }
+
+        /* Additional styles for the questions page */
+        #questions-container .form-group {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        #questions-container label {
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        #questions-container textarea {
+            min-height: 80px;
+        }
+
+        /* Center the title and make it stand out */
+        .centered-title {
+            text-align: center;
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+<div class="overlay" id="overlay"></div>
+    
+    <!-- Added id="loading" to this div -->
+    <div id="loading" class="loading">
+        <div class="loading-message">
+            <h3>Generating Content...</h3>
+        </div>
+        <div class="quote-container">
+            <!-- Quotes will be displayed here -->
+        </div>
+    </div>
+
+    <div id="step1" class="card step active">
+        <h1 class="centered-title">DOE SmartPD Creator</h1>
+        
+        <!-- Major Duties Section -->
+        <section>
+            <h2>Section 1 - Major Duties</h2>
+            <div class="instructions">
+                <p>List each major duty (1, 2, 3) and include percentages that total 100%. Major duties are typically 25% or greater. 
+                Major Duties should be important enough and broad enough to list in the job announcement in order to receive an 
+                acceptable number of qualified candidates but not so broad that they couldn't address performance issues at a later 
+                time if needed.</p>
+            </div>
+
+            <div class="form-group">
+                <label>Number of Duties:</label>
+                <select id="dutyCount">
+                    <option value="1">1 Duty</option>
+                    <option value="2">2 Duties</option>
+                    <option value="3">3 Duties</option>
+                    <option value="4">4 Duties</option>
+                    <option value="5">5 Duties</option>
+                    <option value="6">6 Duties</option>
+                    <option value="7">7 Duties</option>
+                    <option value="8">8 Duties</option>
+                    <option value="9">9 Duties</option>
+                    <option value="10">10 Duties</option>
+                    <option value="11">11 Duties</option>
+                    <option value="12">12 Duties</option>
+                </select>
+            </div>
+
+            <div id="dutiesContainer"></div>
+            <div id="percentageWarning" class="warning">Total percentage must equal 100%</div>
+            <div id="percentageConfirmation" class="confirmation">Total percentage is 100%. Everything looks good!</div>
+        </section>
+
+        <!-- Factors Section -->
+        <section>
+            <h2>Section 2 - Factors</h2>
+
+            <!-- Factor 1 -->
+            <div class="form-group">
+                <div class="factor-title">Factor 1 - Knowledge Required</div>
+                <div class="instructions">
+                    <p>This factor covers the nature and extent of information or facts which the worker must understand to do acceptable work (e.g., steps, procedures, practices, rules, policies, theories, principles, and concepts) and the nature and extent of the skills needed to apply those knowledges.</p>
+                    <p>Please answer:</p>
+                    <ul>
+                        <li>What kind and level of knowledge and skills are needed to be successful in this position?</li>
+                        <li>How are these knowledge/skills used in doing the work?</li>
+                    </ul>
+                </div>
+                <textarea id="factor1" required></textarea>
+            </div>
+
+            <!-- Factor 2 -->
+            <div class="form-group">
+                <div class="factor-title">Factor 2 - Supervisory Controls</div>
+                <div class="instructions">
+                    <p>"Supervisory Controls" covers the nature and extent of direct or indirect controls exercised by the supervisor, the employee's responsibility, and the review of completed work.</p>
+                    <p>Please answer:</p>
+                    <ul>
+                        <li>How is work assigned?</li>
+                        <li>How much instruction is given?</li>
+                        <li>How are priorities and deadlines set?</li>
+                        <li>How much latitude does the employee have in determining how work is carried out?</li>
+                        <li>How much do they consult with their supervisor?</li>
+                        <li>Is the work reviewed at every step, spot-checked, or only at completion?</li>
+                        <li>Why is the work being checked?</li>
+                        <li>Are changes often made based on higher level review?</li>
+                    </ul>
+                </div>
+                <textarea id="factor2" required></textarea>
+            </div>
+
+            <!-- Factor 3 -->
+            <div class="form-group">
+                <div class="factor-title">Factor 3 - Guidelines</div>
+                <div class="instructions">
+                    <p>This factor covers the nature of guidelines and the judgment needed to apply them.</p>
+                    <p>Please answer:</p>
+                    <ul>
+                        <li>What types of reference materials would generally be available?</li>
+                        <li>How much judgment is required when determining how and when to use the available guidelines?</li>
+                    </ul>
+                </div>
+                <textarea id="factor3" required></textarea>
+            </div>
+
+            <!-- Factor 4 -->
+            <div class="form-group">
+                <div class="factor-title">Factor 4 - Complexity</div>
+                <div class="instructions">
+                    <p>Complexity covers the nature, number, variety, and intricacy of tasks, steps, processes, or methods in the work performed.</p>
+                    <p>Please answer:</p>
+                    <ul>
+                        <li>What is the nature, number, variety, and intricacy of tasks, steps, processes, or methods in the work performed?</li>
+                        <li>How difficult is it to identify what needs to be done?</li>
+                        <li>How difficult is it to complete assignments and how much originality is involved?</li>
+                    </ul>
+                </div>
+                <textarea id="factor4" required></textarea>
+            </div>
+
+            <!-- Factor 5 -->
+            <div class="form-group">
+                <div class="factor-title">Factor 5 - Scope and Effect</div>
+                <div class="instructions">
+                    <p>"Scope and Effect" covers the relationship between the nature of the work and the effect of work products or services.</p>
+                    <p>Please answer:</p>
+                    <ul>
+                        <li>What is the purpose of the work?</li>
+                        <li>Whom and/or what product or service does the work affect?</li>
+                    </ul>
+                </div>
+                <textarea id="factor5" required></textarea>
+            </div>
+
+            <!-- Factor 6 -->
+            <div class="form-group">
+                <div class="factor-title">Factor 6 - Personal Contacts</div>
+                <div class="instructions">
+                    <p>This factor includes face-to-face contacts and telephone and radio dialogue with persons not in the supervisory chain.</p>
+                    <p>Please answer:</p>
+                    <ul>
+                        <li>What individuals and/or organizations does the employee contact?</li>
+                        <li>Are contacts within the immediate office, organization, agency, etc. or external to it?</li>
+                        <li>What level of the organization does the person contacted occupy?</li>
+                    </ul>
+                </div>
+                <textarea id="factor6" required></textarea>
+            </div>
+
+            <!-- Factor 7 -->
+            <div class="form-group">
+                <div class="factor-title">Factor 7 - Purpose of Contacts</div>
+                <div class="instructions">
+                    <p>Purpose of personal contacts ranges from factual exchanges of information to situations involving significant or controversial issues.</p>
+                    <p>Please answer:</p>
+                    <ul>
+                        <li>What is the primary reason the employee engages with their regular contacts?</li>
+                        <li>Does the employee need to be more skillful than average in approaching people and groups?</li>
+                        <li>Are topics discussed controversial or significant to the organization?</li>
+                    </ul>
+                </div>
+                <textarea id="factor7" required></textarea>
+            </div>
+
+            <!-- Factor 8 -->
+            <div class="form-group">
+                <div class="factor-title">Factor 8 - Physical Demands</div>
+                <div class="instructions">
+                    <p>The Physical Demands factor covers the requirements and physical demands placed on the employee by the work assignment.</p>
+                    <p>Please answer:</p>
+                    <ul>
+                        <li>What physical demands does the position require beyond those typical of an office setting?</li>
+                        <li>What is the frequency and intensity of these additional physical demands?</li>
+                    </ul>
+                </div>
+                <textarea id="factor8" required></textarea>
+            </div>
+
+            <!-- Factor 9 -->
+            <div class="form-group">
+                <div class="factor-title">Factor 9 - Work Environment</div>
+                <div class="instructions">
+                    <p>The Work Environment factor considers the risks and discomforts in the employee's physical surroundings or the nature of the work.</p>
+                    <p>Please answer:</p>
+                    <ul>
+                        <li>Where does the employee typically perform their work?</li>
+                        <li>What potentially unsafe conditions or hazards is the employee exposed to and what is the frequency of exposure?</li>
+                        <li>Does the work require the regular use of protective equipment? If so, what sort of equipment?</li>
+                    </ul>
+                </div>
+                <textarea id="factor9" required></textarea>
+            </div>
+        </section>
+
+        <button class="button" onclick="validateAndContinue()">Generate Follow-up Questions</button>
+    </div>
+
+    <div id="step2" class="card step">
+        <h2>Follow-up Questions</h2>
+        <div class="instructions">
+            <p>Please answer any additional questions that will help create a comprehensive Position Description. Note: These questions are optional but will help improve the final output.</p>
+        </div>
+        <div id="questions-container">
+            <!-- Questions will be dynamically inserted here -->
+        </div>
+        <div class="form-group button-group">
+            <button class="button" onclick="goBack()">Back</button>
+            <button class="button" onclick="generatePD()">Generate PD</button>
+        </div>
+    </div>
+
+    <div id="step3" class="card step">
+        <h2>Position Description</h2>
+        <button class="button" onclick="copyPD()">Copy PD</button>
+        <div id="pdContent"></div>
+        <button class="button" onclick="startOver()">Create Another Position Description</button>
+    </div>
+<script>
+        let duties = [];
+
+        const LOADING_QUOTES = [
+            {"text": "Leadership is the art of getting someone else to do something you want done because he wants to do it.", "author": "Dwight D. Eisenhower"},
+            {"text": "Management is doing things right; leadership is doing the right things.", "author": "Peter F. Drucker"},
+            {"text": "The function of leadership is to produce more leaders, not more followers.", "author": "Ralph Nader"},
+            {"text": "A leader is one who knows the way, goes the way, and shows the way.", "author": "John C. Maxwell"},
+            {"text": "Leadership and learning are indispensable to each other.", "author": "John F. Kennedy"},
+            {"text": "The greatest leader is not necessarily the one who does the greatest things. He is the one that gets people to do the greatest things.", "author": "Ronald Reagan"},
+            {"text": "Innovation distinguishes between a leader and a follower.", "author": "Steve Jobs"},
+            {"text": "Leadership is not about being the best. Leadership is about making everyone else better.", "author": "Sheryl Sandberg"},
+            {"text": "The best executive is the one who has sense enough to pick good people to do what he wants done, and self-restraint to keep from meddling while they do it.", "author": "Theodore Roosevelt"},
+            {"text": "A good leader takes a little more than his share of the blame, a little less than his share of the credit.", "author": "Arnold H. Glasow"}
+        ];
+
+        function updateDutiesContainer() {
+            const count = parseInt(document.getElementById('dutyCount').value);
+            const container = document.getElementById('dutiesContainer');
+            
+            // Preserve existing duties
+            while (duties.length > count) {
+                duties.pop();
+            }
+            
+            while (duties.length < count) {
+                duties.push({
+                    percentage: '',
+                    title: '',
+                    description: ''
+                });
+            }
+            
+            container.innerHTML = duties.map((duty, index) => `
+                <div class="duty-group">
+                    <span class="delete-duty" onclick="deleteDuty(${index})">×</span>
+                    <div class="form-group">
+                        <label>Duty ${index + 1} Percentage:</label>
+                        <input type="text" 
+                            value="${duty.percentage}" 
+                            onchange="updateDuty(${index}, 'percentage', this.value)"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label>Duty ${index + 1}:</label>
+                        <input type="text" 
+                            value="${duty.title}" 
+                            onchange="updateDuty(${index}, 'title', this.value)"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label>Duty ${index + 1} Description:</label>
+                        <textarea 
+                            onchange="updateDuty(${index}, 'description', this.value)"
+                            required>${duty.description}</textarea>
+                    </div>
+                </div>
+            `).join('');
+
+            validatePercentageTotal();
+        }
+
+        function deleteDuty(index) {
+            duties.splice(index, 1);
+            document.getElementById('dutyCount').value = duties.length;
+            updateDutiesContainer();
+        }
+
+        function updateDuty(index, field, value) {
+            if (field === 'percentage') {
+                // Remove any '%' symbols
+                value = value.replace('%', '').trim();
+            }
+            duties[index][field] = value;
+            if (field === 'percentage') {
+                validatePercentageTotal();
+            }
+        }
+
+        function validatePercentageTotal() {
+            const total = duties.reduce((sum, duty) => sum + (parseInt(duty.percentage.replace('%', '').trim()) || 0), 0);
+            const warning = document.getElementById('percentageWarning');
+            const confirmation = document.getElementById('percentageConfirmation');
+            
+            if (total !== 100) {
+                warning.style.display = 'block';
+                warning.textContent = `Current total: ${total}%. Total percentage must equal 100%`;
+                confirmation.style.display = 'none';
+                return false;
+            }
+            
+            // When total == 100
+            warning.style.display = 'none';
+            confirmation.style.display = 'block';
+            confirmation.textContent = `Total percentage is 100%. Everything looks good!`;
+            return true;
+        }
+
+        function showLoading(message) {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('loading').style.display = 'block';
+            // Update the loading message
+            document.querySelector('#loading .loading-message h3').textContent = message;
+        }
+
+        function hideLoading() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        let quoteInterval;
+        function startQuoteRotation() {
+            let quoteIndex = 0;
+            const quoteContainer = document.querySelector('.quote-container');
+            
+            // Show first quote immediately
+            const firstQuote = LOADING_QUOTES[0];
+            quoteContainer.innerHTML = `"${firstQuote.text}"<br><span class="author">- ${firstQuote.author}</span>`;
+            
+            // Start rotation
+            quoteInterval = setInterval(() => {
+                quoteIndex = (quoteIndex + 1) % LOADING_QUOTES.length;
+                const quote = LOADING_QUOTES[quoteIndex];
+                quoteContainer.innerHTML = `"${quote.text}"<br><span class="author">- ${quote.author}</span>`;
+            }, 7000);
+        }
+
+        function stopQuoteRotation() {
+            if (quoteInterval) {
+                clearInterval(quoteInterval);
+            }
+        }
+
+        function validateAndContinue() {
+            const allDutiesFilled = duties.every(duty => 
+                duty.percentage && 
+                duty.title && 
+                duty.description
+            );
+
+            if (!allDutiesFilled) {
+                alert('Please fill in all duty fields');
+                return;
+            }
+
+            if (!validatePercentageTotal()) {
+                alert('Duty percentages must total 100%');
+                return;
+            }
+
+            // Check if all factors are filled
+            for (let i = 1; i <= 9; i++) {
+                const factor = document.getElementById(`factor${i}`);
+                if (!factor.value.trim()) {
+                    alert(`Please fill in Factor ${i}`);
+                    factor.focus();
+                    return;
+                }
+            }
+
+            generateQuestions();
+        }
+
+        function generateQuestions() {
+            showLoading('Generating Questions...');
+            startQuoteRotation();
+
+            const data = {
+                duties: duties,
+                factors: {
+                    factor1: document.getElementById('factor1').value,
+                    factor2: document.getElementById('factor2').value,
+                    factor3: document.getElementById('factor3').value,
+                    factor4: document.getElementById('factor4').value,
+                    factor5: document.getElementById('factor5').value,
+                    factor6: document.getElementById('factor6').value,
+                    factor7: document.getElementById('factor7').value,
+                    factor8: document.getElementById('factor8').value,
+                    factor9: document.getElementById('factor9').value
+                }
+            };
+
+            fetch('/api/generate-questions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                stopQuoteRotation();
+                const container = document.getElementById('questions-container');
+                container.innerHTML = data.questions.map((question, index) => `
+                    <div class="form-group">
+                        <label>${question}</label>
+                        <textarea id="question${index}" rows="3"></textarea>
+                    </div>
+                `).join('');
+                
+                hideLoading();
+                showStep(2);
+            })
+            .catch(error => {
+                stopQuoteRotation();
+                console.error('Error:', error);
+                alert('Error generating questions. Please try again.');
+                hideLoading();
+            });
+        }
+
+        function generatePD() {
+            showLoading('Generating PD...');
+            startQuoteRotation();
+
+            const questionAnswers = {};
+            document.querySelectorAll('#questions-container textarea').forEach((textarea, index) => {
+                questionAnswers[index] = textarea.value || 'No answer provided';
+            });
+
+            const data = {
+                duties: duties,
+                factors: {
+                    factor1: document.getElementById('factor1').value,
+                    factor2: document.getElementById('factor2').value,
+                    factor3: document.getElementById('factor3').value,
+                    factor4: document.getElementById('factor4').value,
+                    factor5: document.getElementById('factor5').value,
+                    factor6: document.getElementById('factor6').value,
+                    factor7: document.getElementById('factor7').value,
+                    factor8: document.getElementById('factor8').value,
+                    factor9: document.getElementById('factor9').value
+                },
+                answers: questionAnswers
+            };
+
+            fetch('/api/generate-pd', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                stopQuoteRotation();
+                document.getElementById('pdContent').innerHTML = data.html;
+                hideLoading();
+                showStep(3);
+            })
+            .catch(error => {
+                stopQuoteRotation();
+                console.error('Error:', error);
+                alert('Error generating PD. Please try again.');
+                hideLoading();
+            });
+        }
+
+        function showStep(step) {
+            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+            document.getElementById(`step${step}`).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function goBack() {
+            showStep(1);
+        }
+
+        function startOver() {
+            duties = [];
+            document.getElementById('dutyCount').value = 1;
+            updateDutiesContainer();
+            
+            // Clear all factors
+            for (let i = 1; i <= 9; i++) {
+                document.getElementById(`factor${i}`).value = '';
+            }
+            
+            showStep(1);
+        }
+
+        function copyPD() {
+            const content = document.getElementById('pdContent').innerText;
+            navigator.clipboard.writeText(content)
+                .then(() => alert('Position Description copied to clipboard!'))
+                .catch(err => console.error('Failed to copy:', err));
+        }
+
+        // Initialize duties container when page loads
+        document.getElementById('dutyCount').addEventListener('change', updateDutiesContainer);
+        updateDutiesContainer();
+    </script>
+</body>
+</html>
+
